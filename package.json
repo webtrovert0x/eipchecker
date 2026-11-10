@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "compile": "node scripts/compile.js",
-    "deploy": "node scripts/deploy.js"
+    "deploy": "node scripts/deploy.js",
+    "verify": "node scripts/verify.js"
   },
   "dependencies": {
     "@reown/appkit": "^1.6.0",
