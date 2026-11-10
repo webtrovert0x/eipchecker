@@ -5,6 +5,7 @@ import { Navbar } from '../components/Navbar';
 import { InspectionCard } from '../components/InspectionCard';
 import { DirectoryView } from '../components/DirectoryView';
 import { QuirksExplainer } from '../components/QuirksExplainer';
+import { EIPCheckerLogo } from '../components/EIPCheckerLogo';
 import { ShieldCheck, HelpCircle, CheckCircle, Database, Sparkles, Terminal } from 'lucide-react';
 import { useWeb3Config } from '../context/web3-provider';
 
@@ -31,8 +32,12 @@ export default function Home() {
           
           <div className="relative z-10 max-w-2xl">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider mb-4 border border-white/20">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>BOTChain Testnet Standards Inspector</span>
+              <img
+                src="/botchain-logo.png"
+                alt="BOTChain"
+                className="w-4 h-4 rounded-full object-contain shrink-0"
+              />
+              <span>BOTChain Mainnet Standards Inspector</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
@@ -78,27 +83,52 @@ export default function Home() {
       <footer className="mt-auto border-t border-slate-200 bg-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex items-center space-x-2">
+            <EIPCheckerLogo className="w-5 h-5 shrink-0" />
             <span className="font-semibold text-slate-700">EIPChecker</span>
             <span>—</span>
-            <span>Smart Contract Standards Inspector for BOTChain Testnet (Chain ID 968)</span>
+            <span>Smart Contract Standards Inspector for BOTChain Mainnet (Chain ID 677)</span>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <a
-              href="https://scan.bohr.life/"
+              href="https://scan.botchain.ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-600 transition-colors"
+              className="inline-flex items-center space-x-1.5 hover:text-blue-600 transition-colors"
             >
-              BOHR Scan Explorer
+              <img
+                src="/botchain-logo.png"
+                alt="BOTChain"
+                className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+              />
+              <span>BOTChain Scan Explorer</span>
             </a>
             <span>•</span>
             <a
-              href="https://rpc.bohr.life"
+              href="https://rpc.botchain.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-600 transition-colors"
+              className="inline-flex items-center space-x-1.5 hover:text-blue-600 transition-colors"
             >
-              RPC Endpoint
+              <img
+                src="/botchain-logo.png"
+                alt="BOTChain"
+                className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+              />
+              <span>RPC Endpoint</span>
+            </a>
+            <span>•</span>
+            <a
+              href="https://www.botchain.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-1.5 hover:text-blue-600 transition-colors"
+            >
+              <img
+                src="/botchain-logo.png"
+                alt="BOTChain"
+                className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+              />
+              <span>Official Website</span>
             </a>
           </div>
         </div>

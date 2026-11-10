@@ -15,7 +15,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { createPublicClient, http } from 'viem';
-import { botchainTestnet } from '../lib/botchain';
+import { botchainMainnet } from '../lib/botchain';
 import { EIP_CHECKER_REGISTRY_ABI } from '../lib/registry-abi';
 import { useWeb3Config } from '../context/web3-provider';
 import { StandardType } from '../types/eip';
@@ -52,8 +52,8 @@ export function DirectoryView({ onInspectSelect }: { onInspectSelect: (address: 
     setIsLoading(true);
     try {
       const client = createPublicClient({
-        chain: botchainTestnet,
-        transport: http('https://rpc.bohr.life'),
+        chain: botchainMainnet,
+        transport: http('https://rpc.botchain.ai'),
       });
 
       const count = await (client as any).readContract({
@@ -172,14 +172,14 @@ export function DirectoryView({ onInspectSelect }: { onInspectSelect: (address: 
               <Layers className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-bold text-blue-900 text-base">EIPCheckerRegistry.sol Ready for Deployment</h4>
+              <h4 className="font-bold text-blue-900 text-base">EIPCheckerRegistry.sol Ready for BOTChain Mainnet</h4>
               <p className="mt-1 text-sm text-blue-800 leading-relaxed">
-                The smart contract <code className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-blue-200 text-blue-900">contracts/EIPCheckerRegistry.sol</code> is fully compiled and ready to be deployed to BOTChain Testnet.
+                The smart contract <code className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-blue-200 text-blue-900">contracts/EIPCheckerRegistry.sol</code> is fully compiled and ready to be deployed to BOTChain Mainnet.
               </p>
               <div className="mt-3 bg-white p-3 rounded-xl border border-blue-200 text-xs font-mono text-slate-800 space-y-1">
                 <div className="text-slate-500"># 1. Add your private key to .env:</div>
                 <div>PRIVATE_KEY=0x...</div>
-                <div className="text-slate-500 mt-2"># 2. Deploy to BOTChain Testnet (gas fee only):</div>
+                <div className="text-slate-500 mt-2"># 2. Deploy to BOTChain Mainnet (gas fee only):</div>
                 <div className="text-blue-700 font-bold">npm run deploy</div>
               </div>
             </div>
@@ -196,7 +196,7 @@ export function DirectoryView({ onInspectSelect }: { onInspectSelect: (address: 
             </div>
             <h3 className="font-bold text-slate-800 text-base">No Contracts In Directory Yet</h3>
             <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
-              Inspect any contract on BOTChain Testnet and record the findings to register it in this public compatibility index.
+              Inspect any contract on BOTChain Mainnet and record the findings to register it in this public compatibility index.
             </p>
           </div>
         ) : (
@@ -221,11 +221,17 @@ export function DirectoryView({ onInspectSelect }: { onInspectSelect: (address: 
                           {record.targetContract.slice(0, 10)}...{record.targetContract.slice(-8)}
                         </span>
                         <a
-                          href={`https://scan.bohr.life/address/${record.targetContract}`}
+                          href={`https://scan.botchain.ai/address/${record.targetContract}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-slate-400 hover:text-blue-600"
+                          className="text-slate-400 hover:text-blue-600 inline-flex items-center space-x-1"
+                          title="View on BOTChain Scan"
                         >
+                          <img
+                            src="/botchain-logo.png"
+                            alt="BOTChain"
+                            className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+                          />
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                       </div>

@@ -7,7 +7,7 @@ import {
   hexToString,
   hexToNumber,
 } from 'viem';
-import { botchainTestnet } from './botchain';
+import { botchainMainnet } from './botchain';
 import {
   CheckItem,
   InspectionReport,
@@ -72,8 +72,8 @@ export async function inspectContract(
   customRpcUrl?: string
 ): Promise<InspectionReport> {
   const client = createPublicClient({
-    chain: botchainTestnet,
-    transport: http(customRpcUrl || 'https://rpc.bohr.life'),
+    chain: botchainMainnet,
+    transport: http(customRpcUrl || 'https://rpc.botchain.ai'),
   });
 
   const checks: CheckItem[] = [];
@@ -107,11 +107,11 @@ export async function inspectContract(
           name: 'Bytecode Presence',
           description: 'Checks if contract bytecode exists at the given address',
           status: 'failed',
-          details: 'No bytecode found at this address on BOTChain Testnet. May be an EOA or un-deployed.',
+          details: 'No bytecode found at this address on BOTChain Mainnet. May be an EOA or un-deployed.',
         },
       ],
       suspiciousFindings: ['Address has 0 bytes of code. Not an active smart contract.'],
-      recommendations: ['Ensure the address is a deployed smart contract on BOTChain Testnet.'],
+      recommendations: ['Ensure the address is a deployed smart contract on BOTChain Mainnet.'],
       metadata: {},
       erc165Report: {
         supported: false,

@@ -1,6 +1,6 @@
 # EIPChecker — Smart Contract Standards Inspector
 
-[![Network: BOTChain Testnet](https://img.shields.io/badge/Network-BOTChain%20Testnet%20(968)-blue.svg)](https://scan.bohr.life/)
+[![Network: BOTChain Mainnet](https://img.shields.io/badge/Network-BOTChain%20Mainnet%20(677)-blue.svg)](https://scan.botchain.ai/)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636.svg)](https://soliditylang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black.svg)](https://nextjs.org/)
 [![Reown AppKit](https://img.shields.io/badge/Reown-AppKit%20v1.6-blue.svg)](https://reown.com/)
@@ -9,7 +9,7 @@
 > **Core Problem**: A smart contract can claim to implement an Ethereum standard without correctly supporting its expected behavior.  
 > **Crucial Takeaway**: *ERC-165 support alone does not prove full standard compliance.*
 
-**EIPChecker** is a deterministic runtime standards inspector and on-chain compatibility directory built for **BOTChain Testnet**. It performs deep behavioral analysis, verifies method and event availability, detects spec-breaking quirks, and records verified reports to an on-chain registry under a **Gas-Fee-Only** policy.
+**EIPChecker** is a deterministic runtime standards inspector and on-chain compatibility directory built for **BOTChain Mainnet**. It performs deep behavioral analysis, verifies method and event availability, detects spec-breaking quirks, and records verified reports to an on-chain registry under a **Gas-Fee-Only** policy.
 
 📖 **Read the full [Technical Whitepaper](./WHITEPAPER.md)**
 
@@ -33,17 +33,16 @@ Every check, inspection, and recording function interacts with the contract via 
 
 ---
 
-## 🚀 Deployed Contracts on BOTChain Testnet (Chain ID: 968)
+## 🚀 Deployed Contracts on BOTChain Mainnet (Chain ID: 677)
 
 | Contract | Address | Explorer Link |
 | :--- | :--- | :--- |
-| **`EIPCheckerRegistry.sol`** | `0x102888800e59ef5698dfc3d2768c489c9903c396` | [View on BOHR Scan](https://scan.bohr.life/address/0x102888800e59ef5698dfc3d2768c489c9903c396) |
-| **Standard ERC-20 (`BSTT`)** | `0x011b3f1df87355c5596f57751289fa3e23b0cc1b` | [View on BOHR Scan](https://scan.bohr.life/address/0x011b3f1df87355c5596f57751289fa3e23b0cc1b) |
-| **USDT-Quirk Demo Token** | `0x05c9a52b29e58ee799872d86150e61e6e0af4ae1` | [View on BOHR Scan](https://scan.bohr.life/address/0x05c9a52b29e58ee799872d86150e61e6e0af4ae1) |
+| **`EIPCheckerRegistry.sol` (Mainnet)** | `0x4c2fe22b741cf9784511f92c803004bd898fd512` | [View on BOTChain Scan](https://scan.botchain.ai/address/0x4c2fe22b741cf9784511f92c803004bd898fd512) |
+| **Deployment Tx** | `0x1e63615f6a2d4d1b10e352fe6ae581de7151f3a87ce488173be7a8dc5a7bbdd3` | [View Tx on BOTChain Scan](https://scan.botchain.ai/tx/0x1e63615f6a2d4d1b10e352fe6ae581de7151f3a87ce488173be7a8dc5a7bbdd3) |
 
-- **RPC URL**: `https://rpc.bohr.life`
+- **RPC URL**: `https://rpc.botchain.ai`
 - **Native Token**: `BOT`
-- **Block Explorer**: `https://scan.bohr.life/`
+- **Block Explorer**: `https://scan.botchain.ai/`
 
 ---
 
@@ -102,3 +101,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📄 License
 MIT License. Free to use, fork, and build upon.
+

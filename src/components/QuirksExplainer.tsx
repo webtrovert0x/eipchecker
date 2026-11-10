@@ -100,7 +100,7 @@ export function QuirksExplainer() {
             <h4 className="font-semibold text-slate-900">Gas-Fee-Only Registry Guarantee</h4>
           </div>
           <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-            Every inspection and standard verification in EIPChecker interacts directly with <span className="font-semibold text-slate-900">EIPCheckerRegistry.sol</span> on BOTChain Testnet. Every function requires a standard network gas fee only, with zero protocol or platform fees.
+            Every inspection and standard verification in EIPChecker interacts directly with <span className="font-semibold text-slate-900">EIPCheckerRegistry.sol</span> on BOTChain Mainnet. Every function requires a standard network gas fee only, with zero protocol or platform fees.
           </p>
           <div className="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs text-slate-700 space-y-2">
             <div className="flex items-center space-x-2">

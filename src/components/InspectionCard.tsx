@@ -19,19 +19,19 @@ import { inspectContract } from '../lib/inspector';
 import { InspectionReport } from '../types/eip';
 import { EIP_CHECKER_REGISTRY_ABI } from '../lib/registry-abi';
 import { useWeb3Config } from '../context/web3-provider';
-import { botchainTestnet } from '../lib/botchain';
+import { botchainMainnet } from '../lib/botchain';
 
-// Deployed contracts on BOTChain Testnet (Chain ID 968)
+// Deployed contracts on BOTChain Mainnet (Chain ID 677)
 const PRESET_CONTRACTS = [
+  {
+    name: 'EIPChecker Registry (Mainnet)',
+    address: '0x4c2fe22b741cf9784511f92c803004bd898fd512',
+    type: 'Core Registry',
+  },
   {
     name: 'Standard Token (ERC-20)',
     address: '0x011b3f1df87355c5596f57751289fa3e23b0cc1b',
     type: 'ERC-20 (BSTT)',
-  },
-  {
-    name: 'USDT Quirk (Missing Bool)',
-    address: '0x05c9a52b29e58ee799872d86150e61e6e0af4ae1',
-    type: 'ERC-20 (Void Return)',
   },
   {
     name: 'Target Contract (BOTChain)',
@@ -128,15 +128,15 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
     // Pre-flight check: Verify bytecode exists on BOTChain before spending gas
     try {
       const publicClient = createPublicClient({
-        chain: botchainTestnet,
-        transport: http('https://rpc.bohr.life'),
+        chain: botchainMainnet,
+        transport: http('https://rpc.botchain.ai'),
       });
 
       const bytecode = await publicClient.getBytecode({ address: targetAddress as `0x${string}` });
       if (!bytecode || bytecode === '0x' || bytecode.length <= 2) {
         setIsProcessing(false);
         setErrorMsg(
-          `Address ${targetAddress} has no bytecode deployed on BOTChain Testnet (Chain ID 968). Transaction prevented to protect your gas fee.`
+          `Address ${targetAddress} has no bytecode deployed on BOTChain Mainnet (Chain ID 677). Transaction prevented to protect your gas fee.`
         );
         return;
       }
@@ -151,7 +151,7 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
     const activeRegistry =
       registryAddress ||
       (process.env.NEXT_PUBLIC_REGISTRY_ADDRESS as `0x${string}`) ||
-      '0x102888800e59ef5698dfc3d2768c489c9903c396';
+      '0x4c2fe22b741cf9784511f92c803004bd898fd512';
 
     try {
       let txResultHash: `0x${string}` | null = null;
@@ -178,7 +178,7 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
 
         const walletClient = createWalletClient({
           account: sender,
-          chain: botchainTestnet,
+          chain: botchainMainnet,
           transport: custom((window as any).ethereum),
         });
 
@@ -187,7 +187,7 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
           abi: EIP_CHECKER_REGISTRY_ABI,
           functionName: 'inspectAndRecord',
           args: [targetAddress as `0x${string}`],
-          chain: botchainTestnet,
+          chain: botchainMainnet,
         });
       }
 
@@ -213,8 +213,13 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
             <h2 className="text-xl font-bold text-slate-900">
               Inspect Contract Standards
             </h2>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
-              BOTChain Testnet (968)
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 inline-flex items-center space-x-1">
+              <img
+                src="/botchain-logo.png"
+                alt="BOTChain"
+                className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+              />
+              <span>BOTChain Mainnet (677)</span>
             </span>
             <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 flex items-center space-x-1">
               <Fuel className="w-3 h-3 text-blue-600" />
@@ -301,19 +306,24 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
                 )}
                 <span>
                   {isTxConfirming
-                    ? 'Inspection transaction mining on BOTChain Testnet (gas fee only)...'
+                    ? 'Inspection transaction mining on BOTChain Mainnet (gas fee only)...'
                     : isTxReverted
                     ? 'Transaction reverted on-chain. Please check target contract.'
                     : 'Transaction confirmed! Inspection findings recorded in BOTChain Directory.'}
                 </span>
               </div>
               <a
-                href={`https://scan.bohr.life/tx/${currentTxHash}`}
+                href={`https://scan.botchain.ai/tx/${currentTxHash}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium underline flex items-center space-x-1 text-blue-700 hover:text-blue-900"
+                className="font-medium underline flex items-center space-x-1.5 text-blue-700 hover:text-blue-900"
               >
-                <span>BOHR Scan</span>
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOTChain"
+                  className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+                />
+                <span>BOTChain Scan</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -336,12 +346,17 @@ export function InspectionCard({ onCheckRecorded }: { onCheckRecorded?: () => vo
                     {report.targetContract}
                   </span>
                   <a
-                    href={`https://scan.bohr.life/address/${report.targetContract}`}
+                    href={`https://scan.botchain.ai/address/${report.targetContract}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-blue-600 hover:text-blue-800 flex items-center space-x-1 font-medium"
+                    className="text-xs text-blue-600 hover:text-blue-800 flex items-center space-x-1.5 font-medium"
                   >
-                    <span>BOHR Scan</span>
+                    <img
+                      src="/botchain-logo.png"
+                      alt="BOTChain"
+                      className="w-3.5 h-3.5 rounded-full object-contain shrink-0"
+                    />
+                    <span>BOTChain Scan</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>

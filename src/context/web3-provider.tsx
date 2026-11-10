@@ -5,7 +5,7 @@ import { WagmiProvider, createConfig, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createAppKit } from '@reown/appkit/react';
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
-import { botchainTestnet } from '../lib/botchain';
+import { botchainMainnet } from '../lib/botchain';
 
 const queryClient = new QueryClient();
 
@@ -39,23 +39,22 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
         setRegistryAddress(data.registryAddress || '');
 
         // Fallback or user provided project id
-        // Even if empty, we provide a placeholder to prevent client crash while prompting user
         const activeProjectId = id || 'b56e18d47c72ab683b10814fe9495694';
 
         const adapter = new WagmiAdapter({
           ssr: true,
-          networks: [botchainTestnet as any],
+          networks: [botchainMainnet as any],
           projectId: activeProjectId,
         });
 
         createAppKit({
           adapters: [adapter],
-          networks: [botchainTestnet as any],
+          networks: [botchainMainnet as any],
           projectId: activeProjectId,
           metadata: {
             name: 'EIPChecker',
-            description: 'Smart Contract Standards Inspector for BOTChain Testnet',
-            url: typeof window !== 'undefined' ? window.location.origin : 'https://eipchecker.local',
+            description: 'Smart Contract Standards Inspector for BOTChain Mainnet',
+            url: typeof window !== 'undefined' ? window.location.origin : 'https://eipchecker-bay.vercel.app',
             icons: ['https://avatars.githubusercontent.com/u/179229932'],
           },
           themeMode: 'light',
@@ -74,9 +73,9 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
         console.error('Failed to initialize Web3 provider:', err);
         // Fallback direct wagmi config
         const fallbackConfig = createConfig({
-          chains: [botchainTestnet as any],
+          chains: [botchainMainnet as any],
           transports: {
-            [botchainTestnet.id]: http('https://rpc.bohr.life'),
+            [botchainMainnet.id]: http('https://rpc.botchain.ai'),
           },
         });
         setWagmiConfig(fallbackConfig);
@@ -93,7 +92,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-slate-800">
         <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4" />
         <h2 className="text-xl font-semibold text-slate-900">Loading EIPChecker</h2>
-        <p className="text-sm text-slate-500 mt-1">Connecting to BOTChain Testnet (Chain ID 968)...</p>
+        <p className="text-sm text-slate-500 mt-1">Connecting to BOTChain Mainnet (Chain ID 677)...</p>
       </div>
     );
   }
@@ -112,4 +111,3 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
     </Web3Context.Provider>
   );
 }
-

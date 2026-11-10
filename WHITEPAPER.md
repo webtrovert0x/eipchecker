@@ -2,8 +2,8 @@
 **A Deterministic Runtime Standards Inspector & On-Chain Compatibility Directory for EVM Smart Contracts**
 
 *Author: EIPChecker Core Engineering*  
-*Network: BOTChain Testnet (Chain ID: 968)*  
-*Contract Registry: `0x102888800e59ef5698dfc3d2768c489c9903c396`*  
+*Network: BOTChain Mainnet (Chain ID: 677)*  
+*Contract Registry: `0x4c2fe22b741cf9784511f92c803004bd898fd512`*  
 *Date: November 2026*
 
 ---
@@ -13,7 +13,7 @@ The Ethereum Improvement Proposal (EIP) ecosystem relies on formalized interface
 
 A contract can broadcast compatibility with an Ethereum standard through docstrings, marketing, or superficial ERC-165 declarations without correctly fulfilling the specification's required state transitions, return payloads, or failure conditions. Such deviations have triggered catastrophic vulnerabilities across DeFi history—from silent transfer failures due to non-standard return values (e.g., the USDT void-return quirk) to marketplace exploits stemming from non-reverting ownership queries.
 
-**EIPChecker** introduces a deterministic, multi-layered inspection architecture coupled with an on-chain verification registry (`EIPCheckerRegistry.sol`) on **BOTChain Testnet**. EIPChecker performs deep behavioral analysis, low-level calldata simulation, and edge-case boundary testing. Furthermore, all inspection and registry functions adhere strictly to a **Gas-Fee-Only** economic model: zero protocol, platform, or development taxation (`msg.value == 0`).
+**EIPChecker** introduces a deterministic, multi-layered inspection architecture coupled with an on-chain verification registry (`EIPCheckerRegistry.sol`) on **BOTChain Mainnet**. EIPChecker performs deep behavioral analysis, low-level calldata simulation, and edge-case boundary testing. Furthermore, all inspection and registry functions adhere strictly to a **Gas-Fee-Only** economic model: zero protocol, platform, or development taxation (`msg.value == 0`).
 
 ---
 
@@ -124,19 +124,15 @@ Users interact with the contract exclusively via standard network gas:
 
 ---
 
-## 5. Deployment on BOTChain Testnet
+## 5. Deployment on BOTChain Mainnet
 
-EIPChecker is deployed and verified on **BOTChain Testnet**:
-- **Chain ID**: `968`
-- **RPC Endpoint**: `https://rpc.bohr.life`
+EIPChecker is deployed and verified on **BOTChain Mainnet**:
+- **Chain ID**: `677`
+- **RPC Endpoint**: `https://rpc.botchain.ai`
 - **Native Currency**: `BOT`
-- **Block Explorer**: `https://scan.bohr.life`
-- **EIPCheckerRegistry Address**: [`0x102888800e59ef5698dfc3d2768c489c9903c396`](https://scan.bohr.life/address/0x102888800e59ef5698dfc3d2768c489c9903c396)
-- **Deployment Transaction**: [`0xbbd11a31bb3c62a31ce8a03d96720c7de01b087c15493a5ed85d1e551bd7104f`](https://scan.bohr.life/tx/0xbbd11a31bb3c62a31ce8a03d96720c7de01b087c15493a5ed85d1e551bd7104f)
-
-### Live Test Artifacts on BOTChain Testnet
-- **Standard ERC-20 (`BSTT`)**: [`0x011b3f1df87355c5596f57751289fa3e23b0cc1b`](https://scan.bohr.life/address/0x011b3f1df87355c5596f57751289fa3e23b0cc1b)
-- **USDT-Quirk Demo Token**: [`0x05c9a52b29e58ee799872d86150e61e6e0af4ae1`](https://scan.bohr.life/address/0x05c9a52b29e58ee799872d86150e61e6e0af4ae1)
+- **Block Explorer**: `https://scan.botchain.ai`
+- **EIPCheckerRegistry Address**: [`0x4c2fe22b741cf9784511f92c803004bd898fd512`](https://scan.botchain.ai/address/0x4c2fe22b741cf9784511f92c803004bd898fd512)
+- **Deployment Transaction**: [`0x1e63615f6a2d4d1b10e352fe6ae581de7151f3a87ce488173be7a8dc5a7bbdd3`](https://scan.botchain.ai/tx/0x1e63615f6a2d4d1b10e352fe6ae581de7151f3a87ce488173be7a8dc5a7bbdd3)
 
 ---
 
@@ -149,4 +145,5 @@ EIPChecker is deployed and verified on **BOTChain Testnet**:
 ---
 
 ## 7. Conclusion
-EIPChecker establishes a trust-minimized, deterministic foundation for Ethereum standard compliance on BOTChain Testnet. By combining low-level execution probing, transparent diagnostic bitmasks, and an immutable public directory under a gas-fee-only paradigm, EIPChecker elevates contract interoperability from superficial claims to verifiable behavior.
+EIPChecker establishes a trust-minimized, deterministic foundation for Ethereum standard compliance on BOTChain Mainnet. By combining low-level execution probing, transparent diagnostic bitmasks, and an immutable public directory under a gas-fee-only paradigm, EIPChecker elevates contract interoperability from superficial claims to verifiable behavior.
+

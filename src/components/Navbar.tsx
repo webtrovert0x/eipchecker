@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ShieldCheck, ExternalLink, Activity, Sparkles, Database } from 'lucide-react';
 import { useAccount } from 'wagmi';
 import { useWeb3Config } from '../context/web3-provider';
+import { EIPCheckerLogo } from './EIPCheckerLogo';
 
 interface NavbarProps {
   activeTab: 'inspect' | 'directory' | 'guide';
@@ -21,9 +22,7 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo & Name */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
+            <EIPCheckerLogo className="w-10 h-10 shrink-0" />
             <div>
               <div className="flex items-center space-x-2">
                 <span className="font-bold text-xl tracking-tight text-slate-900">EIP<span className="text-blue-600">Checker</span></span>
@@ -76,18 +75,22 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 
           {/* Network & Wallet Controls */}
           <div className="flex items-center space-x-3">
-            {/* BOTChain Badge */}
+            {/* BOTChain Badge with Official Logo */}
             <a
-              href="https://scan.bohr.life/"
+              href="https://scan.botchain.ai"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden lg:flex items-center space-x-2 px-2.5 py-1.5 rounded-lg border border-blue-200 bg-blue-50/50 text-xs text-blue-900 hover:bg-blue-100/50 transition-colors"
-              title="BOTChain Testnet (Chain ID 968)"
+              title="BOTChain Mainnet (Chain ID 677)"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <img
+                src="/botchain-logo.png"
+                alt="BOTChain"
+                className="w-4 h-4 rounded-full object-contain shrink-0"
+              />
               <span className="font-medium">BOTChain</span>
               <span className="text-blue-500">|</span>
-              <span className="text-slate-500 font-mono">968 (BOT)</span>
+              <span className="text-slate-500 font-mono">677 (BOT)</span>
               <ExternalLink className="w-3 h-3 text-slate-400" />
             </a>
 

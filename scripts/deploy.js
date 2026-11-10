@@ -5,9 +5,9 @@ const { createWalletClient, createPublicClient, http } = require('viem');
 const { privateKeyToAccount } = require('viem/accounts');
 const { defineChain } = require('viem');
 
-const botChainTestnet = defineChain({
-  id: 968,
-  name: 'BOTChain Testnet',
+const botChainMainnet = defineChain({
+  id: 677,
+  name: 'BOTChain Mainnet',
   nativeCurrency: {
     decimals: 18,
     name: 'BOT',
@@ -15,16 +15,16 @@ const botChainTestnet = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ['https://rpc.bohr.life'],
+      http: ['https://rpc.botchain.ai'],
     },
     public: {
-      http: ['https://rpc.bohr.life'],
+      http: ['https://rpc.botchain.ai'],
     },
   },
   blockExplorers: {
     default: {
-      name: 'BOHR Scan',
-      url: 'https://scan.bohr.life',
+      name: 'BOTChain Scan',
+      url: 'https://scan.botchain.ai',
     },
   },
 });
@@ -42,22 +42,22 @@ async function main() {
   const account = privateKeyToAccount(formattedKey);
 
   console.log('----------------------------------------------------');
-  console.log('🚀 Deploying EIPCheckerRegistry to BOTChain Testnet');
-  console.log('   Chain ID: 968');
-  console.log('   RPC: https://rpc.bohr.life');
+  console.log('🚀 Deploying EIPCheckerRegistry to BOTChain Mainnet');
+  console.log('   Chain ID: 677');
+  console.log('   RPC: https://rpc.botchain.ai');
   console.log('   Deployer Address:', account.address);
   console.log('   Native Token: BOT');
   console.log('----------------------------------------------------');
 
   const publicClient = createPublicClient({
-    chain: botChainTestnet,
-    transport: http('https://rpc.bohr.life'),
+    chain: botChainMainnet,
+    transport: http('https://rpc.botchain.ai'),
   });
 
   const walletClient = createWalletClient({
     account,
-    chain: botChainTestnet,
-    transport: http('https://rpc.bohr.life'),
+    chain: botChainMainnet,
+    transport: http('https://rpc.botchain.ai'),
   });
 
   const balance = await publicClient.getBalance({ address: account.address });
@@ -79,16 +79,16 @@ async function main() {
   });
 
   console.log(`Transaction sent! Tx Hash: ${hash}`);
-  console.log(`View on explorer: https://scan.bohr.life/tx/${hash}`);
+  console.log(`View on explorer: https://scan.botchain.ai/tx/${hash}`);
   console.log('Waiting for block confirmation...');
 
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
   const contractAddress = receipt.contractAddress;
 
   console.log('\n====================================================');
-  console.log('🎉 EIPCheckerRegistry successfully deployed!');
+  console.log('🎉 EIPCheckerRegistry successfully deployed to BOTChain Mainnet!');
   console.log('Contract Address:', contractAddress);
-  console.log('Explorer URL:', `https://scan.bohr.life/address/${contractAddress}`);
+  console.log('Explorer URL:', `https://scan.botchain.ai/address/${contractAddress}`);
   console.log('====================================================\n');
 
   // Automatically update .env with NEXT_PUBLIC_REGISTRY_ADDRESS
@@ -112,4 +112,3 @@ main().catch((err) => {
   console.error('Deployment failed:', err);
   process.exit(1);
 });
-
